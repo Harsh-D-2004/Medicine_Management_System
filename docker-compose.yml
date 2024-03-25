@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./FrontEnd/frontned  # Assuming frontend Dockerfile is in FrontEnd directory
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./FrontEnd/frontend:/app  # Assuming your frontend files are in FrontEnd/frontend directory
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./BackEnd/service1  # Assuming backend Dockerfile is in BackEnd directory
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./BackEnd/service1:/app  # Assuming your backend files are in BackEnd/service1 directory
