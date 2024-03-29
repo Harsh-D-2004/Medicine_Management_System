@@ -1,0 +1,25 @@
+# Use official OpenJDK image as base
+FROM openjdk:11-jdk-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the Gradle wrapper and build file
+COPY ./service1/gradlew .
+COPY ./service1/gradle ./gradle
+
+# Copy Gradle dependencies files
+COPY ./service1/build.gradle .
+COPY ./service1/settings.gradle .
+
+# Copy the source code
+COPY ./service1/src ./src
+
+# Build the application
+RUN ./gradlew build -x test
+
+# Expose the port the application runs on
+EXPOSE 8080
+
+# Run the application
+CMD ["java", "-jar", "build/libs/service1.jar"]
