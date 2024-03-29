@@ -15,7 +15,8 @@ function App() {
           <Route path = '/' element = {<MedicinalItems/>}></Route>
           <Route path = '/med' element = {<MedicinalItems/>}></Route>
           <Route path = '/addMedicine' element = {<Medicine/>}></Route>
-          {/* <Route path = '/updateMedicine' element = {<UpdateMedicine/>}></Route> */}
+          <Route path = '/updateMedicine/:id' element = {<Medicine/>}></Route>
+          {/* <Route path = '/deleteMedicine/:id' element = {<Medicine/>}></Route> */}
         </Routes>
         <Footer></Footer>
       </BrowserRouter>
