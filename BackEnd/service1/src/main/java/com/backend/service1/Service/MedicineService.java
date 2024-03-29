@@ -1,6 +1,5 @@
 package com.backend.service1.Service;
 
-import com.backend.service1.Controller.MedicineController;
 import com.backend.service1.DTO.MedicineRepo;
 import com.backend.service1.Entity.Medicine;
 import org.slf4j.Logger;
@@ -8,13 +7,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.beanutils.PropertyUtils;
-
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Objects;
-import java.util.Optional;
 
 @Service
 public class MedicineService {
@@ -28,6 +23,11 @@ public class MedicineService {
     {
         String methodName = "addMedicine";
         logger.info("Saving to database : {} ,  Method : {} , ClassName : {}" , medicine , methodName , this.getClass().getSimpleName());
+        if(medicine == null)
+        {
+            logger.info("Error : {} ,  Method : {} , ClassName : {}" , medicine , methodName , this.getClass().getSimpleName());
+            return null;
+        }
         medicineRepo.save(medicine);
         logger.info("Successfully saved to database : {} ,  Method : {} , ClassName : {}" , medicine , methodName , this.getClass().getSimpleName());
         return medicine;
@@ -47,6 +47,7 @@ public class MedicineService {
         return medicineList;
     }
 
+    @SuppressWarnings("null")
     public Medicine getMedicineById(String Id)
     {
         String methodName = "getMedicineById";
@@ -75,9 +76,11 @@ public class MedicineService {
         return null;
     }
 
+    @SuppressWarnings("null")
     public Medicine updateMedicineById(String medId , Medicine medicine) throws InvocationTargetException, IllegalAccessException {
         String methodName = "updateMedicineById";
         logger.info("updating medicine with id : {} ,  Method : {} , ClassName : {}" ,medId, methodName , this.getClass().getSimpleName());
+        @SuppressWarnings("null")
         Medicine medicine1 = medicineRepo.findById(medId).orElseThrow(() -> {
             logger.info("No such element with id : {} ,  Method : {} , ClassName : {}" ,medId, methodName , this.getClass().getSimpleName());
             return null;
@@ -91,6 +94,7 @@ public class MedicineService {
         return medicine1;
     }
 
+    @SuppressWarnings({ "unused", "null" })
     public boolean deleteMedicineById(String id)
     {
         String methodName = "deleteMedicineById";

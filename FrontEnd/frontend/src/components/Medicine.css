@@ -1,0 +1,21 @@
+/* Medicine.css */
+
+/* Form styles */
+.form-label {
+    font-weight: bold;
+  }
+  
+  .form-control {
+    margin-bottom: 15px;
+  }
+  
+  /* Error message styles */
+  .invalid-feedback {
+    color: red;
+  }
+  
+  /* Page title styles */
+  .text-center {
+    margin-bottom: 30px;
+  }
+  
