@@ -1,20 +1,16 @@
-version: '3.8'
+version: '3'
 
 services:
-  frontend:
-    build:
-      context: ./FrontEnd/frontned  # Assuming frontend Dockerfile is in FrontEnd directory
-    ports:
-      - "3000:3000"
-    volumes:
-      - ./FrontEnd/frontend:/app  # Assuming your frontend files are in FrontEnd/frontend directory
-    depends_on:
-      - backend
-
   backend:
     build:
-      context: ./BackEnd/service1  # Assuming backend Dockerfile is in BackEnd directory
+      context: .
+      dockerfile: Dockerfile.backend
     ports:
       - "8080:8080"
-    volumes:
-      - ./BackEnd/service1:/app  # Assuming your backend files are in BackEnd/service1 directory
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "3000:3000"  # Map container port 3000 to host port 3000
