@@ -29,6 +29,10 @@ export const  getMedicinebyId = (id)=> {
    return axios.put(REST_API_BASE_URl+"/"+id);
 }
 
+export const  getMedicinebyId2 = (id)=> {
+  return axios.get(REST_API_BASE_URl+"/"+id);
+}
+
 export const updateMedcine = (id , medicine) => {
   return axios.put(REST_API_BASE_URl + "/"+id, medicine);
 }
@@ -37,6 +41,6 @@ export const deleteMedicine = (id) => {
   return axios.delete(REST_API_BASE_URl + "/" + id);
 }
 
-export const getMedicineByName =(name) => {
-  return axios.get("http://localhost:8080/api/v1/medicine/name/" + name)
+export const getMedicineByName = (name) => {
+  return axios.get(`http://localhost:8080/api/v1/medicine/name/${name}`)
 }
