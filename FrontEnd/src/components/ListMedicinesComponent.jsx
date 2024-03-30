@@ -63,7 +63,7 @@ const MedicinalItems = () => {
               {/* <img src={medicine.image} className="card-img-top" alt={medicine.name} /> */}
               <div className="card-body">
                 <h2 className="card-title fw-bold fs-5 mb-3" style={{ fontFamily: "'Roboto', sans-serif" }}>{medicine.name}</h2>
-                <p className="card-text mb-1">Price: ${medicine.price}</p>
+                <p className="card-text mb-1">Price: {medicine.price} Rs</p>
                 <p className="card-text mb-1">Dosage: {medicine.dosage}</p>
                 <p className="card-text mb-1">Manufacturer: {medicine.manufacturer}</p>
                 <p className="card-text mb-1">Expiry Date: {formatDate(medicine.expiryDate)}</p>
