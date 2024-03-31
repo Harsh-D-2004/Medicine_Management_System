@@ -48,7 +48,7 @@ const Header = () => {
   return (
     <header className="bg-dark text-white py-4">
       <div className="container d-flex justify-content-between align-items-center">
-      <div className="mb-3">
+        <div className="mb-3">
           <h1 className="fw-bold mb-0">Emcure Pharmaceuticals</h1>
           <h4 className="fw-bold mb-0">Pharmacy Management System</h4>
         </div>
@@ -61,6 +61,7 @@ const Header = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             style={{ maxWidth: "200px" }}
+            disabled={isLoading}
           />
           <button
             className="btn btn-primary"

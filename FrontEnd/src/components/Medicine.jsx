@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { checkIfIdExists, createMedicine, getMedicinebyId, updateMedcine } from "../services/MedicineService";
+import { checkIfIdExists, createMedicine , getMedicinebyId2, updateMedicine } from "../services/MedicineService";
 import { useNavigate, useParams } from "react-router-dom";
 import './Medicine.css'
 
@@ -41,7 +41,7 @@ const Medicine = () => {
       const medicine = { id, name, medId, manufacturer, dosage, price, expiryDate, quantityInStock, shelfAddress };
 
       if (paramId) {
-        updateMedcine(paramId, medicine)
+        updateMedicine(paramId, medicine)
           .then((response) => {
             alert("Medicine Updated Successfully");
             navigator("/med");
@@ -94,10 +94,10 @@ const Medicine = () => {
 
   useEffect(() => {
     if (paramId) {
-      getMedicinebyId(paramId)
+      getMedicinebyId2(paramId)
         .then((response) => {
           setId(response.data.id);
-          setMedId(response.data.medicineId);
+          setMedId(response.data.medId);
           setName(response.data.name);
           setManufacturer(response.data.manufacturer);
           setDosage(response.data.dosage);
@@ -119,6 +119,21 @@ const Medicine = () => {
     }
   }
 
+  function checkIdExists() {
+    checkIfIdExists(id)
+      .then((exists) => {
+        if (exists) {
+          const isConfirmed = window.confirm("ID already exists. Do you want to change it?");
+          if (!isConfirmed) {
+            setId("");
+          }
+        }
+      })
+      .catch((error) => {
+        console.error('Error checking if ID exists:', error);
+      });
+  }
+
   return (
     <div className="container my-3">
       <div className="row justify-content-center">
@@ -127,7 +142,7 @@ const Medicine = () => {
           <form onSubmit={addOrUpdateMedicine}>
             <div className="mb-3">
               <label htmlFor="id" className="form-label">ID</label>
-              <input type="text" className={`form-control ${errors.id ? 'is-invalid' : ''}`} id="id" placeholder="ID (unique)" value={id} onChange={(e) => setId(e.target.value)} />
+              <input type="text" className={`form-control ${errors.id ? 'is-invalid' : ''}`} id="id" placeholder="ID (unique)" value={id} onChange={(e) => setId(e.target.value)} onBlur={checkIdExists}/>
               {errors.id && <div className="invalid-feedback">{errors.id}</div>}
             </div>
             <div className="mb-3">
@@ -173,4 +188,3 @@ const Medicine = () => {
 };
 
 export default Medicine;
-

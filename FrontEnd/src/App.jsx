@@ -18,7 +18,6 @@ function App() {
           <Route path = '/addMedicine' element = {<Medicine/>}></Route>
           <Route path = '/updateMedicine/:id' element = {<Medicine/>}></Route>
           <Route path = '/search-result/:medicineId' element = {<SearchResult/>}></Route>
-          <Route path = '/search-result/error' element = {<SearchResult/>}></Route>
         </Routes>
         <Footer></Footer>
       </BrowserRouter>

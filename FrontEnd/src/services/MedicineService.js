@@ -11,19 +11,22 @@ export const createMedicine = (medicine) => {
 }
 
 export async function checkIfIdExists(id) {
-    try {
-      const response = await axios.get(REST_API_BASE_URl + "/" + id);
-      
-      if(response !== null)
-      {
-        return false;
-      }
-      return true
-    } catch (error) {
-      console.error('Error checking if ID exists:', error);
-      throw error;
+  try {
+    const response = await axios.get(REST_API_BASE_URl + "/" + id);
+    
+    if(response.status === 200) {
+      return true;
+    } else if (response.status === 404) {
+      return false;
+    } else {
+      console.error('Unexpected status code:', response.status);
+      return false;
     }
+  } catch (error) {
+    console.error('Error checking if ID exists:', error);
+    return false;
   }
+}
 
 export const  getMedicinebyId = (id)=> {
    return axios.put(REST_API_BASE_URl+"/"+id);
@@ -33,7 +36,7 @@ export const  getMedicinebyId2 = (id)=> {
   return axios.get(REST_API_BASE_URl+"/"+id);
 }
 
-export const updateMedcine = (id , medicine) => {
+export const updateMedicine = (id , medicine) => {
   return axios.put(REST_API_BASE_URl + "/"+id, medicine);
 }
 
