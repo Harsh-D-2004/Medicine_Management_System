@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaSearch } from 'react-icons/fa'; // Importing FaSearch icon from react-icons/fa
 import axios from "axios";
 
 const Header = () => {
@@ -63,13 +64,9 @@ const Header = () => {
             style={{ maxWidth: "200px" }}
             disabled={isLoading}
           />
-          <button
-            className="btn btn-primary"
-            type="submit"
-            disabled={isLoading}
-          >
-            {isLoading ? "Searching..." : "Search"}
-          </button>
+          <div class="btn-group " role="group" aria-label="Third group">
+            <button type="submit" class="btn btn-secondary" disabled={isLoading}><FaSearch /></button>
+          </div>
         </form>
       </div>
     </header>
