@@ -65,7 +65,11 @@ const Header = () => {
             disabled={isLoading}
           />
           <div class="btn-group " role="group" aria-label="Third group">
-            <button type="submit" class="btn btn-secondary" disabled={isLoading}><FaSearch /></button>
+            <button type="submit" 
+            class="btn btn-secondary" 
+            disabled={isLoading}
+            style={{height:38, alignContent:"center"}}
+            ><FaSearch /></button>
           </div>
         </form>
       </div>
